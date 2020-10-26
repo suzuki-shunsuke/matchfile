@@ -1,5 +1,10 @@
 # matchfile
 
+[![Build Status](https://github.com/suzuki-shunsuke/matchfile/workflows/CI/badge.svg)](https://github.com/suzuki-shunsuke/matchfile/actions)
+[![Go Report Card](https://goreportcard.com/badge/github.com/suzuki-shunsuke/matchfile)](https://goreportcard.com/report/github.com/suzuki-shunsuke/matchfile)
+[![GitHub last commit](https://img.shields.io/github/last-commit/suzuki-shunsuke/matchfile.svg)](https://github.com/suzuki-shunsuke/matchfile)
+[![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/suzuki-shunsuke/matchfile/master/LICENSE)
+
 CLI tool to check file paths are matched to the condition
 
 ## Install

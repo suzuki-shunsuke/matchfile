@@ -26,7 +26,7 @@ func parseLine(line string) MatcherParam {
 	}
 	idx := strings.Index(line, " ")
 	if idx == -1 {
-		param.Kinds = []string{"dir", "glob"}
+		param.Kinds = []string{"equal", "dir", "glob"}
 		param.Path = line
 		return param
 	}
@@ -80,6 +80,14 @@ func (matcher regexpMatcher) Match(p string) (bool, error) {
 	return matcher.pattern.MatchString(p), nil
 }
 
+type equalMatcher struct {
+	pattern string
+}
+
+func (matcher equalMatcher) Match(p string) (bool, error) {
+	return p == matcher.pattern, nil
+}
+
 func NewMatcher(pattern, kind string) (Matcher, error) {
 	switch kind {
 	case "dir":
@@ -92,6 +100,8 @@ func NewMatcher(pattern, kind string) (Matcher, error) {
 		return regexpMatcher{pattern: exp}, nil
 	case "glob":
 		return globMatcher{pattern: pattern}, nil
+	case "equal":
+		return equalMatcher{pattern: pattern}, nil
 	default:
 		return nil, errors.New("invalid kind: " + kind)
 	}

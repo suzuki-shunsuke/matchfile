@@ -114,6 +114,9 @@ func (ctrl Controller) match(checkedFiles, conditionLines []string) (bool, error
 				continue
 			}
 		}
+		if matched {
+			break
+		}
 	}
 	return matched, nil
 }

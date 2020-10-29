@@ -80,6 +80,27 @@ func TestController_match(t *testing.T) {
 			},
 			exp: true,
 		},
+		{
+			title: "exclude 4",
+			checkedFiles: []string{
+				".akoi.yml",
+				".github-comment.yml",
+				"ci/build.sh",
+				"ci/install-aws-cli.sh",
+				"ci/install.sh",
+				"ci/merge.sh",
+				"ci/validate-renovate.sh",
+				"go-dependencies.txt",
+				"pkg/k8s/k8s.go",
+				"renovate.json",
+			},
+			conditions: []string{
+				"regexp .*",
+				"!equal README.md",
+				"!equal renovate.json",
+			},
+			exp: true,
+		},
 	}
 	ctrl := Controller{
 		Stdout: os.Stdout,

@@ -28,7 +28,7 @@ matchfile version 0.1.0
 
 ## How to use
 
-`matchfile run` takes two positional arguments.
+`matchfile run` and `matchfile list` takes two positional arguments.
 
 ```
 $ matchfile run <checked file> <condition file>
@@ -38,6 +38,8 @@ $ matchfile run <checked file> <condition file>
 `<condition file>` is the path to the file whose content is the condition.
 
 If there is a file path which matches to the condition of `<condition file>` in the `<checked file>`, `matchfile run` outputs `true` as the standard output, otherwise outputs `false`.
+
+`matchfile list` outputs the file paths which matches to the condition.
 
 ## Example
 
@@ -58,6 +60,11 @@ true
 ```
 
 `true` is outputted because `service/foo/main.go` matches to the condition `service/foo`.
+
+```
+$ matchfile list checked_files.txt condition.txt
+service/foo/main.go
+```
 
 ## Condition File Format
 
@@ -94,10 +101,11 @@ USAGE:
    matchfile [global options] command [command options] [arguments...]
 
 VERSION:
-   0.1.0
+   0.1.3
 
 COMMANDS:
    run      Check file paths are matched to the condition
+   list     List file paths which matches to the condition
    help, h  Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
@@ -112,6 +120,19 @@ NAME:
 
 USAGE:
    matchfile run [command options] <checked file> <condition file>
+
+OPTIONS:
+   --log-level value  log level
+   --help, -h         show help (default: false)
+```
+
+```
+$ matchfile list --help
+NAME:
+   matchfile list - List file paths which matches to the condition
+
+USAGE:
+   matchfile list [command options] <checked file> <condition file>
 
 OPTIONS:
    --log-level value  log level

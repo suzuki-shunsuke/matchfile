@@ -75,7 +75,7 @@ func (ctrl Controller) readConditionFile(p string) ([]string, error) {
 	return conditions, nil
 }
 
-func (ctrl Controller) match(checkedFiles, conditionLines []string) (bool, error) {
+func getConditions(conditionLines []string) ([]Condition, error) {
 	conditions := make([]Condition, 0, len(conditionLines))
 	for _, conditionLine := range conditionLines {
 		matchParam := parseLine(conditionLine)
@@ -86,7 +86,7 @@ func (ctrl Controller) match(checkedFiles, conditionLines []string) (bool, error
 		for j, kind := range matchParam.Kinds {
 			matcher, err := NewMatcher(matchParam.Path, kind)
 			if err != nil {
-				return false, fmt.Errorf("initialize a matcher: %w", err)
+				return nil, fmt.Errorf("initialize a matcher: %w", err)
 			}
 			matchers[j] = matcher
 		}
@@ -94,6 +94,14 @@ func (ctrl Controller) match(checkedFiles, conditionLines []string) (bool, error
 			Exclude: matchParam.Exclude,
 			matcher: combinedMatcher{matchers: matchers},
 		})
+	}
+	return conditions, nil
+}
+
+func (ctrl Controller) match(checkedFiles, conditionLines []string) (bool, error) {
+	conditions, err := getConditions(conditionLines)
+	if err != nil {
+		return false, fmt.Errorf("parse checked files: %w", err)
 	}
 
 	matched := false

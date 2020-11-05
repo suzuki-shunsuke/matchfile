@@ -32,6 +32,18 @@ func (runner Runner) Run(ctx context.Context, args ...string) error {
 					},
 				},
 			},
+			{
+				Name:      "list",
+				Usage:     "List file paths which matches to the condition",
+				ArgsUsage: "<checked file> <condition file>",
+				Action:    runner.listAction,
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:  "log-level",
+						Usage: "log level",
+					},
+				},
+			},
 		},
 	}
 

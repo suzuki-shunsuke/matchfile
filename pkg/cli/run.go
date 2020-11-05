@@ -12,7 +12,7 @@ func (runner Runner) setCLIArg(c *cli.Context, params controller.Params) (contro
 	args := c.Args()
 	if args.Len() != 2 { //nolint:gomnd
 		return controller.Params{}, errors.New(`two arguments are required.
-Usage: matchfile <file path to the list of file paths> <file path to the list of conditions>`)
+Usage: matchfile run <file path to the list of file paths> <file path to the list of conditions>`)
 	}
 	params.CheckedFilePath = args.First()
 	params.ConditionFilePath = args.Get(1)

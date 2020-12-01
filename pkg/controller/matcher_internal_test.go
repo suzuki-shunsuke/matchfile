@@ -6,6 +6,7 @@ import (
 
 //nolint:funlen
 func TestMatcher_Match(t *testing.T) {
+	t.Parallel()
 	regexpMatcher1, err := NewMatcher(".*", "regexp")
 	if err != nil {
 		t.Fatal(err)
@@ -39,6 +40,7 @@ func TestMatcher_Match(t *testing.T) {
 	for _, d := range data {
 		d := d
 		t.Run(d.title, func(t *testing.T) {
+			t.Parallel()
 			b, err := d.matcher.Match(d.checkedFile)
 			if d.isErr {
 				if err == nil {

@@ -7,6 +7,7 @@ import (
 
 //nolint:funlen
 func TestController_match(t *testing.T) {
+	t.Parallel()
 	data := []struct {
 		title        string
 		checkedFiles []string
@@ -109,6 +110,7 @@ func TestController_match(t *testing.T) {
 	for _, d := range data {
 		d := d
 		t.Run(d.title, func(t *testing.T) {
+			t.Parallel()
 			b, err := ctrl.match(d.checkedFiles, d.conditions)
 			if d.isErr {
 				if err == nil {

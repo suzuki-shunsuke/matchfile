@@ -10,7 +10,7 @@ import (
 
 func (runner Runner) setCLIArg(c *cli.Context, params controller.Params) (controller.Params, error) {
 	args := c.Args()
-	if args.Len() != 2 { //nolint:gomnd
+	if args.Len() != 2 { //nolint:mnd
 		return controller.Params{}, errors.New(`two arguments are required.
 Usage: matchfile run <file path to the list of file paths> <file path to the list of conditions>`)
 	}

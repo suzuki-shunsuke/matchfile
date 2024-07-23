@@ -4,7 +4,6 @@ import (
 	"testing"
 )
 
-//nolint:funlen
 func TestMatcher_Match(t *testing.T) {
 	t.Parallel()
 	regexpMatcher1, err := NewMatcher(".*", "regexp")

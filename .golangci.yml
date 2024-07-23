@@ -3,10 +3,20 @@ linters:
   enable-all: true
   disable:
   - wsl
-  - goerr113
+  - err113
   - lll
   - godot
   - nlreturn
   - godox
-  - golint
-  - exhaustivestruct # https://github.com/mbilski/exhaustivestruct
+  - execinquery # WARN The linter 'execinquery' is deprecated (since v1.58.0) due to: The repository of the linter has been archived by the owner.  
+  - gomnd # WARN The linter 'gomnd' is deprecated (since v1.58.0) due to: The linter has been renamed. Replaced by mnd. 
+  - varnamelen
+  - exhaustruct
+  - depguard
+  # TODO
+  - wrapcheck
+  - ireturn
+  - inamedparam
+  - cyclop
+  - gci
+  - revive

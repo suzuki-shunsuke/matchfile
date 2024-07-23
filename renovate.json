@@ -1,26 +1,28 @@
 {
   "extends": [
-    "config:base"
+    "github>suzuki-shunsuke/renovate-config#2.4.0",
+    "github>suzuki-shunsuke/renovate-config:nolimit#2.4.0",
+    "github>suzuki-shunsuke/renovate-config:action-go-version#2.4.0"
   ],
-  "automerge": true,
   "packageRules": [
     {
-      "matchUpdateTypes": ["major"],
-      "automerge": false
-    },
-    {
-      "matchUpdateTypes": ["digest"],
-      "enabled": false
-    },
-    {
-      "postUpdateOptions": ["gomodTidy"],
-      "matchManagers": ["gomod"]
+      "postUpdateOptions": [
+        "gomodTidy"
+      ],
+      "matchManagers": [
+        "gomod"
+      ]
     }
   ],
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": ["ci/install-golangci-lint\\.sh"],
-      "matchStrings": ["GOLANGCI_LINT_VERSION=(?<currentValue>.*?)\\n"],
+      "customType": "regex",
+      "fileMatch": [
+        "ci/install-golangci-lint\\.sh"
+      ],
+      "matchStrings": [
+        "GOLANGCI_LINT_VERSION=(?<currentValue>.*?)\\n"
+      ],
       "depNameTemplate": "golangci/golangci-lint",
       "datasourceTemplate": "github-releases"
     }
